@@ -1,0 +1,24 @@
+<!-- views/home.ejs -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+</head>
+
+<body>
+    <%- include('./partials/nav') %>
+    <h1>Home Page</h1>
+    <% if (Restaurant) { %>
+        <p>Restaurant Name: <%= Restaurant.name %></p>
+        <% if (Restaurant.isOpen) {  %>
+        <p> Yes, We are open!</p>
+    <% } else { %>
+        <p> Sorry, we are closed. </p>
+    <% } %>
+    <% } else { %>
+        <p> No restaurant data available. </p>
+        <% } %>
+</body>
+</html>

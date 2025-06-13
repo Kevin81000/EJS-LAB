@@ -1,0 +1,43 @@
+<% if (restaurant && restaurant.menu) { %>
+  <div class="menu-section">
+    <h2>Mains</h2>
+    <% restaurant.menu.forEach(item => { %>
+      <% if (item.category === 'mains') { %>
+        <div class="menu-item">
+          <h3><%= item.name %></h3>
+          <p><strong>Price:</strong> $<%= item.price.toFixed(2) %></p>
+          <p><strong>Rating:</strong> <%= item.rating %>/5</p>
+          <p><strong>Details:</strong> <%= item.details %></p>
+        </div>
+      <% } %>
+    <% }); %>
+  </div>
+
+  <div class="menu-section">
+    <h2>Desserts</h2>
+    <% restaurant.menu.forEach(item => { %>
+      <% if (item.category === 'desserts') { %>
+        <div class="menu-item">
+          <h3><%= item.name %></h3>
+          <p><strong>Price:</strong> $<%= item.price.toFixed(2) %></p>
+          <p><strong>Rating:</strong> <%= item.rating %>/5</p>
+          <p><strong>Details:</strong> <%= item.details %></p>
+        </div>
+      <% } %>
+    <% }); %>
+  </div>
+
+  <div class="menu-section">
+    <h2>Sides</h2>
+    <% restaurant.menu.forEach(item => { %>
+      <% if (item.category === 'sides') { %>
+        <div class="menu-item">
+          <h3><%= item.name %></h3>
+          <p><strong>Price:</strong> $<%= item.price.toFixed(2) %></p>
+          <p><strong>Rating:</strong> <%= item.rating %>/5</p>
+          <p><strong>Details:</strong> <%= item.details %></p>
+        </div>
+      <% } %>
+    <% }); %>
+  </div>
+<% } %>
