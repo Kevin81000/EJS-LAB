@@ -10,9 +10,9 @@
 <body>
     <%- include('./partials/nav') %>
     <h1>Home Page</h1>
-    <% if (Restaurant) { %>
-        <p>Restaurant Name: <%= Restaurant.name %></p>
-        <% if (Restaurant.isOpen) {  %>
+    <% if (restaurant) { %>
+        <p><%= restaurant.name %></p>
+        <% if (restaurant.isOpen) {  %>
         <p> Yes, We are open!</p>
     <% } else { %>
         <p> Sorry, we are closed. </p>

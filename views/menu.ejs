@@ -6,24 +6,28 @@
   <title>Menu</title>
 </head>
 <body>
+  <%- include(...) %>
+  <main>
   <h1>Full Menu</h1>
   <% if (restaurant && restaurant.menu) { %>
-  <% restaurant.menu.forEach(item => { %>
-    <div class="menu-item">
-      <h3><%= item.name %></h3>
+    <div class="menu-section">
+      <h2>All Items</h2>
+      <%restaurant.menu.forEach(item => { %>
+        <div class="menu item">
+          <h3><%= item.name %> <%= item.rating === 5 ? 'star' : ''%>/h3>
       <p><strong>Price:</strong> $<%= item.price.toFixed(2) %></p>
       <p><strong>Rating:</strong> <%= item.rating %>/5</p>
       <p><strong>Details:</strong> <%= item.details %></p>
     </div>
   <% }); %>
-<% } %>
-<% if (restaurant && restaurant.menu) { %>
+  </div>
+
   <div class="menu-section">
     <h2>Mains</h2>
-    <% restaurant.menu.forEach(item => { %>
-      <% if (item.category === 'mains') { %>
-        <div class="menu-item">
-          <h3><%= item.name %></h3>
+<% restaurant.menu.forEach(item => { %>
+  <% if (item.category === "mains") { %>
+  <div class="menu-item">
+    <h3><%= item.name %> <%= item.rating === 5 ? 'star' : ''%></h3>
           <p><strong>Price:</strong> $<%= item.price.toFixed(2) %></p>
           <p><strong>Rating:</strong> <%= item.rating %>/5</p>
           <p><strong>Details:</strong> <%= item.details %></p>
@@ -37,7 +41,7 @@
     <% restaurant.menu.forEach(item => { %>
       <% if (item.category === 'desserts') { %>
         <div class="menu-item">
-          <h3><%= item.name %> <%=item.rating === 5 ?  %></h3>
+          <h3><%= item.name %> <%=item.rating === 5 ? 'star' : '' %></h3>
           <p><strong>Price:</strong> $<%= item.price.toFixed(2) %></p>
           <p><strong>Rating:</strong> <%= item.rating %>/5</p>
           <p><strong>Details:</strong> <%= item.details %></p>
@@ -59,6 +63,9 @@
       <% } %>
     <% }); %>
   </div>
+  <% } else { %>
+    <P> No Menu items available</P>
 <% } %>
+  </main>
 </body>
 </html>

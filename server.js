@@ -1,8 +1,10 @@
 const express = require('express');
 const app = express();
 
+app.set('view engine', "ejs");
+app.set("views", "./views");
 
-const Restaurant = {
+const restaurant = {
   name: 'The Green Byte Bistro',
   isOpen: true,
   address: '742 Evergreen Rd, Mapleview, OS 45502',
@@ -50,25 +52,23 @@ const Restaurant = {
       details: 'Crispy and lightly seasoned string bean fries, served in a pattern for a fun twist.'
     }
   ]
-}
-
-
-
-
-
-
-app.set('view engine', 'ejs');
+};
+//Home route
 app.get('/', (req, res) => {
-  res.render('home',{Restaurant: Restaurant,} );
+  res.render("home", {restaurant});
 });
-
- app.get('/menu/:category', (req, res) => {
-  const category = req.params.category;
-  const menuItems = Restaurant.menu.filter(item => item.category.toLowerCase() === category.toLowerCase());
-  const capitalizedCategory = category.charAt(0).toUpperCase() + category.slice(1).toLowerCase();
-  res.render('category', { Restaurant: Restaurant, menuItems, category: capitalizedCategory }); 
+//Menu route (all items)
+app.get('/menu',(req, res) => {
+  res.render('menu',{restaurant});
+});
+//Category route
+ app.get("/menu/:category",(req, res) => {
+  const category = req.params.category.toLowerCase();
+  //Filter menu items by category
+  const menuItems = restaurant.menu.filter(item => item.category.toLowerCase() === category);
+  res.render("category", {menuItems, category, restaurant });
  });
-  const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3000;
 app.listen(PORT,() => {
 
 });

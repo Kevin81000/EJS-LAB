@@ -3,8 +3,26 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Menu</title>
+  <title><%= category.charAt(0).toUpperCase() + category.slice(1) %> - <%= restaurant.name %></title>
 </head>
-<h3><%= item.name %> <%= item.rating === 5 ? '⭐' : '' %>.</h3>
-<body> <%- include('./partials/nav') %>
+<body>
+  <%- include(...) %>
+  <main>
+    <h1><%= category.charAt(0).toUpperCase() + category.slice(1) %></h1>
+    <% if (menuItems && menuItems.length > 0) { %>
+      <div class="menu-section">
+        <% menuItems.forEach(item => { %>
+          <div class="menu-item">
+            <h3><%= item.name %><%= item.rating === 5 ? ' 🌟' : '' %></h3>
+            <p><strong>Price:</strong> $<%= item.price.toFixed(2) %></p>
+            <p><strong>Rating:</strong> <%= item.rating %>/5</p>
+            <p><strong>Details:</strong> <%= item.details %></p>
+          </div>
+        <% }); %>
+      </div>
+    <% } else { %>
+      <p>No items found in this category.</p>
+    <% } %>
+  </main>
 </body>
+</html>
