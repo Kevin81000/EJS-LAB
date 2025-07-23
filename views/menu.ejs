@@ -3,69 +3,36 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Menu</title>
+  <title>Menu - <%= restaurant?.name || 'The Green Byte Bistro' %></title>
+  <link rel="stylesheet" href="/styles.css">
 </head>
 <body>
-  <%- include(...) %>
+  <%- include('partials/header') %>
   <main>
-  <h1>Full Menu</h1>
-  <% if (restaurant && restaurant.menu) { %>
-    <div class="menu-section">
-      <h2>All Items</h2>
-      <%restaurant.menu.forEach(item => { %>
-        <div class="menu item">
-          <h3><%= item.name %> <%= item.rating === 5 ? 'star' : ''%>/h3>
-      <p><strong>Price:</strong> $<%= item.price.toFixed(2) %></p>
-      <p><strong>Rating:</strong> <%= item.rating %>/5</p>
-      <p><strong>Details:</strong> <%= item.details %></p>
-    </div>
-  <% }); %>
-  </div>
+    <h1>Full Menu</h1>
+    <% if (restaurant?.menu && restaurant.menu.length > 0) { %>
+      <div class="menu-section">
+        <% restaurant.menu.forEach(item => { %>
+          <div class="menu-item">
+            <h3><%= item.name %><%= item.rating === 5 ? ' 🌟' : '' %></h3>
+            <p><strong>Price:</strong> $<%= item.price.toFixed(2) %></p>
+            <p><strong>Rating:</strong> <%= item.rating %>/5</p>
+            <p><strong>Details:</strong> <%= item.details %></p>
+          </div>
+        <% }); %>
+      </div>
+    <% } else { %>
+      <p>No menu items available.</p>
+    <% } %>
 
-  <div class="menu-section">
-    <h2>Mains</h2>
-<% restaurant.menu.forEach(item => { %>
-  <% if (item.category === "mains") { %>
-  <div class="menu-item">
-    <h3><%= item.name %> <%= item.rating === 5 ? 'star' : ''%></h3>
-          <p><strong>Price:</strong> $<%= item.price.toFixed(2) %></p>
-          <p><strong>Rating:</strong> <%= item.rating %>/5</p>
-          <p><strong>Details:</strong> <%= item.details %></p>
-        </div>
-      <% } %>
-    <% }); %>
-  </div>
-
-  <div class="menu-section">
-    <h2>Desserts</h2>
-    <% restaurant.menu.forEach(item => { %>
-      <% if (item.category === 'desserts') { %>
-        <div class="menu-item">
-          <h3><%= item.name %> <%=item.rating === 5 ? 'star' : '' %></h3>
-          <p><strong>Price:</strong> $<%= item.price.toFixed(2) %></p>
-          <p><strong>Rating:</strong> <%= item.rating %>/5</p>
-          <p><strong>Details:</strong> <%= item.details %></p>
-        </div>
-      <% } %>
-    <% }); %>
-  </div>
-
-  <div class="menu-section">
-    <h2>Sides</h2>
-    <% restaurant.menu.forEach(item => { %>
-      <% if (item.category === 'sides') { %>
-        <div class="menu-item">
-          <h3><%= item.name %></h3>
-          <p><strong>Price:</strong> $<%= item.price.toFixed(2) %></p>
-          <p><strong>Rating:</strong> <%= item.rating %>/5</p>
-          <p><strong>Details:</strong> <%= item.details %></p>
-        </div>
-      <% } %>
-    <% }); %>
-  </div>
-  <% } else { %>
-    <P> No Menu items available</P>
-<% } %>
+  <h2><%= restaurant?.name || 'The Green Byte Bistro' %></h2>
+    <nav>
+      <a href="/">Back to Home</a>
+      <a href="/menu/mains">Mains</a>
+      <a href="/menu/desserts">Desserts</a>
+      <a href="/menu/sides">Sides</a>
+    </nav>
   </main>
+  <%- include('partials/footer') %>
 </body>
 </html>

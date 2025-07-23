@@ -1,0 +1,6 @@
+<footer>
+  <p><%= restaurant?.address || '742 Evergreen Rd, Mapleview, OS 45502' %></p>
+  <p>Phone: <%= restaurant?.phone || '555-321-9876' %></p>
+  <p>Status: <%= restaurant?.isOpen ? 'Open' : 'Closed' %></p>
+  <p>© <%= new Date().getFullYear() %> <%= restaurant?.name || 'The Green Byte Bistro' %></p>
+</footer>
