@@ -54,38 +54,33 @@ const restaurant = {
   ]
 };
 
-// Home route
 app.get('/', (req, res) => {
-  console.log("Rendering home, restaurant:", restaurant);
-  res.render('home', { restaurant }, {cache: false });
+  console.log('Rendering home, restaurant:', restaurant);
+  res.render('home', { restaurant });
 });
-
-// Menu route (all items)
 app.get('/menu', (req, res) => {
-  console.log( 'Rendering menu, restaurant:', restaurant); // Debug
+  console.log('Rendering menu, restaurant:', restaurant);
   res.render('menu', { restaurant }, { cache: false });
 });
-
-// Category route
 app.get('/menu/:category', (req, res) => {
   const category = req.params.category.toLowerCase();
+  console.log('Category:', category);
   const validCategories = ['mains', 'desserts', 'sides'];
   if (!validCategories.includes(category)) {
-     console.log('Invalid category, rendering error');
+    console.log('Invalid category, rendering error');
     return res.status(404).render('error', { message: `Category "${category}" not found.` });
   }
   const menuItems = restaurant.menu.filter(item => item.category.toLowerCase() === category);
   console.log('MenuItems:', menuItems);
-  res.render('category', { menuItems, category, restaurant });
+  res.render('category', { menuItems, category, restaurant }, { cache: false });
 });
 
-// 404 handler
 app.use((req, res) => {
   console.log('Rendering 404, path:', req.path);
-  res.status(404).render('error', { message: 'Page not found.' });
+  res.status(404).render('error', { message: 'Page not found.', restaurant }, { cache: false });
 });
 
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });

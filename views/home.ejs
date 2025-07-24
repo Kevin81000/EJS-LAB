@@ -9,9 +9,8 @@
 
 <body>
     <%- include('./partials/nav') %>
-    <h1>Home</h1>
+    <h1>Welcome to <%= restaurant?.name || 'The Green Byte Bistro'%></h1>
     <% if (restaurant) { %>
-        <p><%= restaurant.name %></p>
         <% if (restaurant.isOpen) {  %>
         <p> Yes, We are open!</p>
     <% } else { %>
@@ -20,5 +19,7 @@
     <% } else { %>
         <p> No restaurant data available. </p>
         <% } %>
+        <p>Address: <%= restaurant?.address || '742 Evergreen Rd, Mapleview, OS 45502' %></p>
+    <p>Phone: <%= restaurant?.phone || '555-321-9876' %></p>
 </body>
 </html>
