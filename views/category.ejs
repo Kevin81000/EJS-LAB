@@ -6,7 +6,7 @@
   <title><%= category.charAt(0).toUpperCase() + category.slice(1) %> - <%= restaurant.name %></title>
 </head>
 <body>
-  <%- include('partials/header') %>
+  <%- include('partials/nav') %>
   <main>
     <h1><%= category.charAt(0).toUpperCase() + category.slice(1) %></h1>
     <% if (menuItems && menuItems.length > 0) { %>

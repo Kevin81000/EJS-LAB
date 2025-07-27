@@ -60,7 +60,7 @@ app.get('/', (req, res) => {
 });
 app.get('/menu', (req, res) => {
   console.log('Rendering menu, restaurant:', restaurant);
-  res.render('menu', { restaurant }, { cache: false });
+  res.render('menu', { restaurant })
 });
 app.get('/menu/:category', (req, res) => {
   const category = req.params.category.toLowerCase();
@@ -72,12 +72,12 @@ app.get('/menu/:category', (req, res) => {
   }
   const menuItems = restaurant.menu.filter(item => item.category.toLowerCase() === category);
   console.log('MenuItems:', menuItems);
-  res.render('category', { menuItems, category, restaurant }, { cache: false });
+  res.render('category', { menuItems, category, restaurant });
 });
 
 app.use((req, res) => {
   console.log('Rendering 404, path:', req.path);
-  res.status(404).render('error', { message: 'Page not found.', restaurant }, { cache: false });
+  res.status(404).render('error', { message: 'Page not found.', restaurant })
 });
 
 const PORT = process.env.PORT || 3000;
